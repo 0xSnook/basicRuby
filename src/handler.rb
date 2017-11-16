@@ -6,5 +6,5 @@ module Handler
   end
 class Self
 
-
+end
 end
