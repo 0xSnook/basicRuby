@@ -1,17 +1,18 @@
 #!/usr/bin/ruby
-
-BEGIN {
-  require_relative "src/handler.rb"
-#  require_relative "src/authentication.rb"
+require_relative "src/handler.rb"
 #  require_relative "src/database.rb"
+BEGIN {
+require 'logger'
+require 'date'
+date = DateTime.now
 puts "[?] Trying to execute System Mainframe..."
-def executeCheck
-  Handler.check
-end
 begin
-  executeCheck
+log = Logger.new(".logs/#{date}.txt","daily")
+log.level = Logger::WARN
+log.error "This will not be ignored"
 rescue
-  puts "[!] An unexpected error has occurred, Quitting..."
+  puts "[!] An unexpected logging error has occurred, Quitting..."
+  log.error "[!] An unexpected logging error has occurred"
   exit
 end
 }
